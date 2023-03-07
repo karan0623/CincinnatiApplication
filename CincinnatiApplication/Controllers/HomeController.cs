@@ -26,6 +26,14 @@ namespace CincinnatiApplication.Controllers
         {
             return View();
         }
+        public IActionResult Economy()
+        {
+            return View();
+        }
+        public IActionResult Attractions()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
