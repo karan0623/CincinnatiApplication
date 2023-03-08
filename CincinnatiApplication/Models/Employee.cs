@@ -7,7 +7,7 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class Welcome
+    public partial class Employee
     {
         [JsonProperty("age_range")]
         public AgeRange AgeRange { get; set; }
@@ -97,14 +97,14 @@
 
     public enum Sex { F, M };
 
-    public partial class Welcome
+    public partial class Employee
     {
-        public static Welcome[] FromJson(string json) => JsonConvert.DeserializeObject<Welcome[]>(json, CincinnatiApplication.Models.Converter.Settings);
+        public static Employee[] FromJson(string json) => JsonConvert.DeserializeObject<Employee[]>(json, CincinnatiApplication.Models.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Welcome[] self) => JsonConvert.SerializeObject(self, CincinnatiApplication.Models.Converter.Settings);
+        public static string ToJson(this Employee[] self) => JsonConvert.SerializeObject(self, CincinnatiApplication.Models.Converter.Settings);
     }
 
     internal static class Converter

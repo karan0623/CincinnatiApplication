@@ -15,20 +15,6 @@ namespace CincinnatiApplication.Controllers
             _logger = logger;
         }
 
-        public void onGet()
-        {
-            using(var webClient = new WebClient()) 
-            {
-
-                string jsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/wmj4-ygbf.json");
-                var employee = Welcome.FromJson(jsonString);
-                ViewData["Welcome"] = employee;
-            }
-            
-                
-            
-        }
-
         public IActionResult Index()
         {
             return View();
@@ -40,6 +26,13 @@ namespace CincinnatiApplication.Controllers
         }
         public IActionResult CincinnatiEmployees()
         {
+            using (var webClient = new WebClient())
+            {
+
+                string jsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/wmj4-ygbf.json");
+                var employee = Employee.FromJson(jsonString);
+                ViewData["Welcome"] = employee;
+            }
             return View();
         }
         public IActionResult Economy()

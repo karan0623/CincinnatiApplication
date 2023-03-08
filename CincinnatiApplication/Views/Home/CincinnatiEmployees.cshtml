@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Cincinnati Employees";
-    var welcomes = (CincinnatiApplication.Models.Welcome[]) ViewData["Welcome"];
+    var welcomes = (CincinnatiApplication.Models.Employee[]) ViewData["Welcome"];
 }
 <h1>@ViewData["Title"]</h1>
 
@@ -11,7 +11,7 @@
         <hr />
         <tr><th>Name</th><th>Sex</th><th>Race</th><th>Business Title</th></tr>
         @{
-            foreach (CincinnatiApplication.Models.Welcome welcome in welcomes)
+            foreach (CincinnatiApplication.Models.Employee welcome in welcomes)
             {
                  <tr>
                     <td>@welcome.Name</td>
