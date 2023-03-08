@@ -1,6 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Cincinnati Employees";
+    var welcomes = (CincinnatiApplication.Models.Welcome[]) ViewData["Welcome"];
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>This will be the Cincinnati employees page.</p>
+
+<div class= "text-center">
+    <table>
+        <hr />
+        <tr><th>Name</th><th>Sex</th><th>Race</th><th>Business Title</th></tr>
+        @{
+            foreach (CincinnatiApplication.Models.Welcome welcome in welcomes)
+            {
+                 <tr>
+                    <td>@welcome.Name</td>
+                    <td>@welcome.Sex</td>
+                    <td>@welcome.Race</td>
+                    <td>@welcome.BusinessTitle</td>
+                </tr>
+            }
+        }
+           
+    </table>
+</div>
