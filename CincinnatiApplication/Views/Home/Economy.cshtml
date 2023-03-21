@@ -1,6 +1,25 @@
 ﻿@{
     ViewData["Title"] = "Economy";
+    var econ = (CincinnatiApplication.Models.Economy[])ViewData["Economy"];
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>This will be the about Economy.</p>
+<div class="text-center">
+    <table>
+        <hr />
+        <tr><th>Project Name</th><th>Program Type</th><th>Total Project Cost Est.</th><th>Est Program Total Value</th></tr>
+        @{
+            foreach (CincinnatiApplication.Models.Economy economy in econ)
+            {
+                <tr>
+                    <td>@economy.ProjectName</td>
+                    <td>@economy.ProgramType</td>
+                    <td>@economy.TotalProjectCostEst</td>
+                    <td>@economy.EstProgramTotalValue</td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
