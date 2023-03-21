@@ -35,8 +35,15 @@ namespace CincinnatiApplication.Controllers
             }
             return View();
         }
-        public IActionResult Economy()
+        public IActionResult Economies()
         {
+            using (var webClient = new WebClient())
+            {
+
+                string jsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/m76i-p5p9.json");
+                var economy = Economy.FromJson(jsonString);
+                ViewData["Econ"] = economy;
+            }
             return View();
         }
         public IActionResult Attractions()
