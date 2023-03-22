@@ -1,6 +1,102 @@
 ﻿@{
     ViewData["Title"] = "About Us";
 }
-<h1>@ViewData["Title"]</h1>
+<style>
+    div {
+        align-content: center;
+        margin: 0 auto;
+    }
 
-<p>This will be the about us page.</p>
+    html {
+        box-sizing: border-box;
+    }
+
+    img {
+        height: 300px;
+    }
+
+    .CM {
+        object-fit: cover;
+        object-position: 0 70%;
+    }
+
+    .Karan {
+        object-fit: cover;
+        object-position: 0 25%;
+    }
+
+    .row {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+    }
+
+    .column {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+        overflow-y: hidden;
+        float: none;
+        width: 40%;
+        min-height: 75%;
+        margin-bottom: 16px;
+        padding: 0 8px;
+    }
+
+    .card {
+        display: flex;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 8px;
+        color: black;
+        background-color: white;
+    }
+
+    .card-title {
+        font-weight: bold;
+    }
+
+    .about-section {
+        padding: 50px;
+        text-align: center;
+        background-color: #474e5d;
+        color: white;
+    }
+
+</style>
+<div class="container">
+    <div class="mt-4 p-5 pb-3 bg-danger text-white rounded text-center">
+        <h1 class="font-weight-bold jumboTitle">About Us</h1>
+        <p>On this page you will be able to learn more about the developers behind this web application.</p>
+
+    </div>
+    <h2 style="text-align:center; margin-top: 30px; font-size: 50px; font-family: 'Dancing Script'; font-weight: 800;" color: #474e5d> Our Team </h2>
+
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <img class="CM" src="~/css/IMG_3598.jpg" alt="CM" style="width:100%" />
+                <div class="container">
+                    <h3 style="text-align:center"> blah </h3>
+                    <p class="card-title">CyberSecurity</p>
+                    <p>blah blah blah blah blah blahblah blah</p>
+                    <p class="text-muted">blah@mail.uc.edu</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img class="Karan" src="/css/Karan.jpg" alt="Karan" style="width:100%" />
+                <div class="container">
+                    <h3 style="text-align:center"> Karan Patel </h3>
+                    <p class="card-title">Software Development</p>
+                    <p>Karan is a fourth year undergraduate at the University of Cincinnati. Karan has done 3 co-ops and will be co-oping in Summer 2023. Karan hobbies include video games, lifting, snowboarding, and basketball.</p>
+                    <p class="text-muted">patel3k7@mail.uc.edu</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
