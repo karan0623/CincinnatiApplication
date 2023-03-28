@@ -10,7 +10,7 @@
     public partial class Employee
     {
         [JsonProperty("age_range")]
-        public AgeRange AgeRange { get; set; }
+        public string AgeRange { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -36,7 +36,6 @@
         public DateTimeOffset HireDate { get; set; }
     }
 
-    public enum AgeRange { Over70, The1825, The2630, The3140, The4150, The5160, The6170, Under18 };
 
     public enum JobFamily { D0Mgm, D1Afs, D2Fir, D2Pol, D4Pt, D5Adm, D6Msc, D7Law, D8Smg, D9Leg };
 
@@ -66,7 +65,6 @@
             DateParseHandling = DateParseHandling.None,
             Converters =
             {
-                AgeRangeConverter.Singleton,
                 JobFamilyConverter.Singleton,
                 PaygroupConverter.Singleton,
                 RaceConverter.Singleton,
@@ -77,76 +75,7 @@
         };
     }
 
-    internal class AgeRangeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(AgeRange) || t == typeof(AgeRange?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "18-25":
-                    return AgeRange.The1825;
-                case "26-30":
-                    return AgeRange.The2630;
-                case "31-40":
-                    return AgeRange.The3140;
-                case "41-50":
-                    return AgeRange.The4150;
-                case "51-60":
-                    return AgeRange.The5160;
-                case "61-70":
-                    return AgeRange.The6170;
-                case "OVER 70":
-                    return AgeRange.Over70;
-                case "UNDER 18":
-                    return AgeRange.Under18;
-            }
-            throw new Exception("Cannot unmarshal type AgeRange");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (AgeRange)untypedValue;
-            switch (value)
-            {
-                case AgeRange.The1825:
-                    serializer.Serialize(writer, "18-25");
-                    return;
-                case AgeRange.The2630:
-                    serializer.Serialize(writer, "26-30");
-                    return;
-                case AgeRange.The3140:
-                    serializer.Serialize(writer, "31-40");
-                    return;
-                case AgeRange.The4150:
-                    serializer.Serialize(writer, "41-50");
-                    return;
-                case AgeRange.The5160:
-                    serializer.Serialize(writer, "51-60");
-                    return;
-                case AgeRange.The6170:
-                    serializer.Serialize(writer, "61-70");
-                    return;
-                case AgeRange.Over70:
-                    serializer.Serialize(writer, "OVER 70");
-                    return;
-                case AgeRange.Under18:
-                    serializer.Serialize(writer, "UNDER 18");
-                    return;
-            }
-            throw new Exception("Cannot marshal type AgeRange");
-        }
-
-        public static readonly AgeRangeConverter Singleton = new AgeRangeConverter();
-    }
+    
 
     internal class ParseStringConverter : JsonConverter
     {
