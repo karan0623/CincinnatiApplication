@@ -33,11 +33,11 @@ namespace CincinnatiApplication.Models
         public string TotalProjectCostEst { get; set; }
 
         [JsonProperty("total_funding_all_sources_est", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(ParseStringConverter))]
+        [JsonConverter(typeof(ParseStringConverters))]
         public long? TotalFundingAllSourcesEst { get; set; }
 
         [JsonProperty("est_program_total_value")]
-        [JsonConverter(typeof(ParseStringConverter))]
+        [JsonConverter(typeof(ParseStringConverters))]
         public long EstProgramTotalValue { get; set; }
 
         [JsonProperty("site_street_address", NullValueHandling = NullValueHandling.Ignore)]
@@ -105,7 +105,7 @@ namespace CincinnatiApplication.Models
             return;
         }
 
-        public static readonly ParseStringConverter Singleton = new ParseStringConverter();
+        public static readonly ParseStringConverters Singleton = new ParseStringConverters();
     }
 
     internal class ProgramTypeConverter : JsonConverter

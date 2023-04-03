@@ -26,7 +26,7 @@
 
         [JsonProperty("std_hours")]
         [JsonConverter(typeof(ParseStringConverter))]
-        public long StdHours { get; set; }
+        public double StdHours { get; set; }
 
 
         [JsonProperty("jobtitle")]
@@ -41,7 +41,7 @@
 
     public enum Paygroup { Ccl, Fir, Gen, Mgm, Pol };
 
-    public enum Race { AmericanIndianAlaskanNative, AsianPacificIslander, Black, Hispanic, Unknown, White };
+    public enum Race { AmericanIndianAlaskanNative, AsianPacificIslander, Black, Hispanic, Unknown, White, Chinese };
 
     public enum SalAdminPlan { D0, D0C, D1, D4, D4M, D5, D6, D8, D9, F40, F48, Law, Pol };
 
@@ -79,14 +79,14 @@
 
     internal class ParseStringConverter : JsonConverter
     {
-        public override bool CanConvert(Type t) => t == typeof(long) || t == typeof(long?);
+        public override bool CanConvert(Type t) => t == typeof(double) || t == typeof(double?);
 
         public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.Null) return null;
             var value = serializer.Deserialize<string>(reader);
-            long l;
-            if (Int64.TryParse(value, out l))
+            double l;
+            if (double.TryParse(value, out l))
             {
                 return l;
             }
@@ -267,6 +267,8 @@
                     return Race.Unknown;
                 case "WHITE":
                     return Race.White;
+                case "CHINESE":
+                    return Race.Chinese;
             }
             throw new Exception("Cannot unmarshal type Race");
         }
@@ -298,6 +300,9 @@
                     return;
                 case Race.White:
                     serializer.Serialize(writer, "WHITE");
+                    return;
+                case Race.Chinese:
+                    serializer.Serialize(writer, "CHINESE");
                     return;
             }
             throw new Exception("Cannot marshal type Race");
